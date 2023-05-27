@@ -46,7 +46,7 @@ export const Skills = () => {
                   <h7>SQL/MongoDB/Firebase</h7>
                 </div>
                 <div className="item">
-                  <ProgressMeter progressValue={75} />
+                  <ProgressMeter progressValue={75  } />
                   <h5>AWS</h5>
                   <h7>Host/IAAS/SAAS/PAAS</h7>
                 </div>
