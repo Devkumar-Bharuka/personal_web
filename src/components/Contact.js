@@ -5,14 +5,13 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
 export const Contact = () => {
-  const formInitialDetails = {
+  const [formDetails, setFormDetails] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     message: ''
-  };
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
+  });
   const [buttonText, setButtonText] = useState('Send');
   const [status, setStatus] = useState({});
 
@@ -27,17 +26,23 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     try {
-      const response = await fetch("/api/sendEmail", {
+      const response = await fetch("https://formspree.io/f/mbjeepbp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formDetails),
+        body: JSON.stringify(formDetails)
       });
       setButtonText("Send");
       const result = await response.json();
-      setFormDetails(formInitialDetails);
-      if (result.code === 200) {
+      setFormDetails({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      if (response.ok) {
         setStatus({ success: true, message: 'Message sent successfully' });
       } else {
         setStatus({ success: false, message: 'Something went wrong, please try again later.' });
@@ -98,7 +103,7 @@ export const Contact = () => {
                         <input
                           type="tel"
                           value={formDetails.phone}
-                          placeholder="Phone No."
+                          placeholder="Mobile No."
                           onChange={(e) => onFormUpdate('phone', e.target.value)}
                         />
                       </Col>

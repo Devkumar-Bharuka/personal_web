@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Col, Row, Alert } from "react-bootstrap";
+import pdfFile from "../assets/img/dv.pdf";
 
-export const Newsletter = ({ status, message, onValidated }) => {
+export const Newsletter = ({}) => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
@@ -21,23 +22,25 @@ export const Newsletter = ({ status, message, onValidated }) => {
     setEmail('');
   }
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = pdfFile;
+    link.download = 'dv.pdf';
+    link.click();
+  }
+
   return (
       <Col lg={12}>
         <div className="newsletter-bx wow slideInUp">
           <Row>
             <Col lg={12} md={6} xl={5}>
-              <h3>Subscribe to our Newsletter<br></br> & Never miss latest updates</h3>
-              {status === 'sending' && <Alert>Sending...</Alert>}
-              {status === 'error' && <Alert variant="danger">{message}</Alert>}
-              {status === 'success' && <Alert variant="success">{message}</Alert>}
+              <h3>Open to Exciting Opportunities!<br /> </h3>
+              <h5>Have a project in mind? Let's bring it to life! Contact me below and let's discuss how we can work together.</h5>
             </Col>
             <Col md={6} xl={7}>
-              <form onSubmit={handleSubmit}>
-                <div className="new-email-bx">
-                  <input value={email} type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" />
-                  <button type="submit">Submit</button>
-                </div>
-              </form>
+              <div className="new-email-bx">
+                <button type="button" onClick={handleDownload}>Download CV</button>
+              </div>
             </Col>
           </Row>
         </div>
