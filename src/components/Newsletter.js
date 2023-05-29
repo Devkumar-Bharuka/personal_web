@@ -3,24 +3,7 @@ import { Col, Row, Alert } from "react-bootstrap";
 import pdfFile from "../assets/img/dv.pdf";
 
 export const Newsletter = ({}) => {
-  const [email, setEmail] = useState('');
 
-  useEffect(() => {
-    if (status === 'success') clearFields();
-  }, [status])
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    email &&
-    email.indexOf("@") > -1 &&
-    onValidated({
-      EMAIL: email
-    })
-  }
-
-  const clearFields = () => {
-    setEmail('');
-  }
 
   const handleDownload = () => {
     const link = document.createElement('a');

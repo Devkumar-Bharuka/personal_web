@@ -63,7 +63,7 @@ export const Contact = () => {
                 <img
                   className={isVisible ? "animate__animated animate__zoomIn" : ""}
                   src={contactImg}
-                  alt="Contact Us"
+                  alt="Contact Me"
                 />
               )}
             </TrackVisibility>
@@ -114,7 +114,8 @@ export const Contact = () => {
                           placeholder="Message"
                           onChange={(e) => onFormUpdate('message', e.target.value)}
                         ></textarea>
-                        <button type="submit"><span>{buttonText}</span></button>
+                        <button type="submit" className="rounded-button"><span>{buttonText}</span></button>
+                        {/* <button type="submit"><span>{buttonText}</span></button> */}
                       </Col>
                       {status.message && (
                         <Col>
